@@ -39,7 +39,7 @@ module Brillo
 
   def self.config
     @config ||= begin
-      static_config = YAML.load_file("#{Rails.root.to_s}/config/brillo.yml").deep_symbolize_keys
+      static_config = JSON.parse(JSON[YAML.load_file("#{Rails.root.to_s}/config/brillo.yml")], symbolize_names: true)
       Config.new(static_config)
     end
   end
