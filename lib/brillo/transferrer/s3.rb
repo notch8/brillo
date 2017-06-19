@@ -34,7 +34,7 @@ module Brillo
         else
           begin
             File.open(path, 'wb') do |file|
-              client.bucket(bucket).objects(filename).read do |chunk|
+              client.buckets[bucket].objects[filename].read do |chunk|
                 file.write(chunk)
               end
             end
