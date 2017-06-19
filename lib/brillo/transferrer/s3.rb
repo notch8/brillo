@@ -52,13 +52,13 @@ module Brillo
           begin
           object = resource.bucket(bucket).object(filename)
           object.upload_file(path)
-          rescue Aws::S3::Errors::NoSuchBucket 
+          rescue Aws::S3::Errors::NoSuchBucket
             create_bucket
             retry
           end
         else
           begin
-          object = client.buckets(bucket).objects[filename]
+          object = client.buckets[bucket].objects[filename]
           object.write(path)
           rescue AWS::S3::Errors::NoSuchBucket
             create_bucket
