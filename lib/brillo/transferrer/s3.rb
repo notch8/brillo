@@ -58,7 +58,7 @@ module Brillo
           end
         else
           begin
-          object = client.bucket(bucket).objects[filename]
+          object = client.buckets(bucket).objects[filename]
           object.write(path)
           rescue AWS::S3::Errors::NoSuchBucket
             create_bucket
