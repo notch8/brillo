@@ -34,9 +34,7 @@ module Brillo
         else
           begin
             File.open(path, 'wb') do |file|
-              client.buckets[bucket].objects[filename].read do |chunk|
-                file.write(chunk)
-              end
+              file.write(client.buckets[bucket].objects[filename].read)
             end
           rescue AWS::S3::Errors::NoSuchBucket
             create_bucket
